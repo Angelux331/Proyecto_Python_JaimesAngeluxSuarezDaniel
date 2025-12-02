@@ -1,0 +1,12 @@
+{
+  "Gastos": {
+    "Categoria": {
+      "Transporte": [],
+      "Comida": [],
+      "Educacion": [],
+      "Salud": [],
+      "Entretenimiento": [],
+      "Otros": []
+    }
+  }
+}
