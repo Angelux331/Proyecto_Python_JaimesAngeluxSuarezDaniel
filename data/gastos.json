@@ -1,12 +1,27 @@
 {
-  "Gastos": {
-    "Categoria": {
-      "Transporte": [],
-      "Comida": [],
-      "Educacion": [],
-      "Salud": [],
-      "Entretenimiento": [],
-      "Otros": []
+    "Gastos": {
+        "Categoria": {
+            "Transporte": [],
+            "Comida": [
+                {
+                    "monto": 132486561254.0,
+                    "categoria": "Comida",
+                    "fecha": "22222222",
+                    "descripcion": "iuhfdsgudsbg"
+                }
+            ],
+            "Servicios": [],
+            "Entretenimiento": [],
+            "Salud": [
+                {
+                    "monto": 81568134.0,
+                    "categoria": "Salud",
+                    "fecha": "44444444",
+                    "descripcion": "uyhwgbdfhdsbfjhvbdsfg"
+                }
+            ],
+            "Educacion": [],
+            "Otros": []
+        }
     }
-  }
 }

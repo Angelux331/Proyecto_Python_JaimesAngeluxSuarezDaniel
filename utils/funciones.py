@@ -1,6 +1,5 @@
 import os
-
-gastos = 'gastos.json'
+from utils.jsonFileHandler import *
 
 def findDictionary(dataList, key, value):
   info = {}
@@ -16,3 +15,8 @@ def limpieza():
 
 def pausar():
   input("Presione Enter para continuar...")
+
+def AgregarGasto(gasto, archivogastos, categoria):
+  data = read_json(archivogastos)
+  data["Gastos"]["Categoria"][categoria].append(gasto)
+  write_json(archivogastos, data)
