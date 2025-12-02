@@ -1,0 +1,53 @@
+{
+    "Gastos": {
+        "Categoria": {
+            "Transporte": [
+                {
+                    "monto": 2700.0,
+                    "categoria": "Transporte",
+                    "fecha": "20251202",
+                    "descripcion": "bus"
+                },
+                {
+                    "monto": 3300.0,
+                    "categoria": "Transporte",
+                    "fecha": "20251202",
+                    "descripcion": "bus"
+                },
+                {
+                    "monto": 2700.0,
+                    "categoria": "Transporte",
+                    "fecha": "20251202",
+                    "descripcion": "bus"
+                }
+            ],
+            "Comida": [
+                {
+                    "monto": 132486561254.0,
+                    "categoria": "Comida",
+                    "fecha": "22222222",
+                    "descripcion": "iuhfdsgudsbg"
+                }
+            ],
+            "Servicios": [
+                {
+                    "monto": 500000.0,
+                    "categoria": "Servicios",
+                    "fecha": "20251130",
+                    "descripcion": "campus"
+                }
+            ],
+            "Entretenimiento": [],
+            "Salud": [
+                {
+                    "monto": 81568134.0,
+                    "categoria": "Salud",
+                    "fecha": "44444444",
+                    "descripcion": "uyhwgbdfhdsbfjhvbdsfg"
+                }
+            ],
+            "Educacion": [],
+            "Otros": []
+        }
+    }
+}
