@@ -48,6 +48,11 @@
                     "monto": 18000,
                     "fecha": "2025-01-17",
                     "descripcion": "Hamburguesa"
+                },
+                {
+                    "monto": 18000.0,
+                    "fecha": "2025-12-03",
+                    "descripcion": "Kfc"
                 }
             ],
             "Servicios": [

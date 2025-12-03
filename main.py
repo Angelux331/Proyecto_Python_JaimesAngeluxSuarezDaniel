@@ -3,7 +3,9 @@ from utils.funciones import *
 from utils.menuscontenido import *
 import time
 
+
 archivogastos = './data/gastos.json'
+
 
 while True:
   choise = menu("Menu Principal: Gestor de Gastos", menuPrincipal.values())
@@ -19,11 +21,13 @@ while True:
           continue
       print("== Agregar Gasto ==")
       gasto = {
-        "monto": float(input("Ingrese el monto del gasto: ")),
+        "monto": validarmonto(),  # Validación mejorada
         "fecha": ingresarfecha(),
         "descripcion": input("Ingrese una descripción del gasto: ").capitalize()
       }
       AgregarGasto(gasto, archivogastos, categoria)
+      print("\n¡Gasto agregado exitosamente!")
+      pausar()
       
     case 2:
       while True:
@@ -36,15 +40,18 @@ while True:
             while True:
               mostrarcategorias(archivogastos)
               categoria = input("Ingrese la categoría a ver: ").capitalize()
-              if validarcategoria (archivogastos, categoria) == True:
+              if validarcategoria(archivogastos, categoria) == True:
                 vergastosporcategoria(archivogastos, categoria)
+                break
               else:
                 break
+                
           case 3:
-            pass
+            filtrarporfechas(archivogastos)
 
           case 4:
             break
+
 
     case 3:
       while True:
@@ -54,13 +61,13 @@ while True:
             calculostotales(archivogastos)
           
           case 2:
-            pass
+            calcularsemanal(archivogastos)
 
           case 3:
-            pass
+            calcularmensual(archivogastos)
 
           case 4:
-            pass
+            calculahistorico(archivogastos)
 
           case 5:
             break
@@ -71,16 +78,16 @@ while True:
         choise = menu("Menu Generar Reporte de Gastos", menuGenerarReporte.values())
         match choise:
           case 1:
-            pass
+            generarreporte(archivogastos, "diario")
           
           case 2:
-            pass
+            generarreporte(archivogastos, "semanal")
 
           case 3:
-            pass
+            generarreporte(archivogastos, "mensual")
 
           case 4:
-            pass
+            generarreporte(archivogastos, "historico")
 
           case 5:
             break
