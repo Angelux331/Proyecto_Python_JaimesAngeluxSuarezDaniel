@@ -51,12 +51,17 @@ def ingresarfecha():
 
 def vetodoslosgastos(archivogastos):
   limpieza()
-  print("== Todos los Gastos ==\n")
   data = read_json(archivogastos)
   categorias = data["Gastos"]["Categoria"].keys()
+  validar = 0
   for categoria in categorias:
-    if len(data["Gastos"]["Categoria"][categoria]) == 0:
-      continue
+    validar += len(data["Gastos"]["Categoria"][categoria])
+  if validar == 0:
+    print("No hay gastos registrados.")
+    pausar()
+    return
+  print("== Todos los Gastos ==\n")
+  for categoria in categorias:
     print(f"--- {categoria} ---")
     gastos = data["Gastos"]["Categoria"][categoria]
     for gasto in gastos:
@@ -67,9 +72,9 @@ def vetodoslosgastos(archivogastos):
 
 def vergastosporcategoria(archivogastos, categoria):
   limpieza()
-  print(f'== Gastos en {categoria} ==\n')
   data = read_json(archivogastos)
   categorias = data["Gastos"]["Categoria"].keys()
+  print(f'== Gastos en {categoria} ==\n')
   for cat in categorias:
     if cat == categoria:
       gastos = data["Gastos"]["Categoria"][cat]
@@ -80,4 +85,32 @@ def vergastosporcategoria(archivogastos, categoria):
       for gasto in gastos:
         print(f"Descripción: {gasto['descripcion']}, Monto: {gasto['monto']}, Fecha: {gasto['fecha']}")
       print("\n")
+  pausar()
+
+def calculostotales(archivogastos):
+  limpieza()
+  data = read_json(archivogastos)
+  categorias = data["Gastos"]["Categoria"].keys()
+  total_general = 0
+  print("== Total de Gastos ==\n")
+  for categoria in categorias:
+    gastos = data["Gastos"]["Categoria"][categoria]
+    total_categoria = sum(gasto["monto"] for gasto in gastos)
+    total_general += total_categoria
+    print(f"{categoria}: {total_categoria}")
+  print(f"\nTotal General de Gastos: {total_general}\n")
+  pausar()
+
+def calculossemanales(archivogastos):
+  limpieza()
+  data = read_json(archivogastos)
+  categorias = data["Gastos"]["Categoria"].keys()
+  total_general = 0
+  print("== Total de Gastos Semanales ==\n")
+  for categoria in categorias:
+    gastos = data["Gastos"]["Categoria"][categoria]
+    total_categoria = sum(gasto["monto"] for gasto in gastos)
+    total_general += total_categoria
+    print(f"{categoria}: {total_categoria}")
+  print(f"\nTotal General de Gastos Semanales: {total_general}\n")
   pausar()

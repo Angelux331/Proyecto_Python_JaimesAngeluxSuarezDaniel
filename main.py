@@ -20,7 +20,6 @@ while True:
       print("== Agregar Gasto ==")
       gasto = {
         "monto": float(input("Ingrese el monto del gasto: ")),
-        "categoria": categoria,
         "fecha": ingresarfecha(),
         "descripcion": input("Ingrese una descripción del gasto: ").capitalize()
       }
@@ -40,7 +39,7 @@ while True:
               if validarcategoria (archivogastos, categoria) == True:
                 vergastosporcategoria(archivogastos, categoria)
               else:
-                continue
+                break
           case 3:
             pass
 
@@ -52,7 +51,7 @@ while True:
         choise = menu("Menu Calcular Total de Gastos", menuCalcularTotalGastos.values())
         match choise:
           case 1:
-            pass
+            calculostotales(archivogastos)
           
           case 2:
             pass
@@ -61,7 +60,11 @@ while True:
             pass
 
           case 4:
+            pass
+
+          case 5:
             break
+
 
     case 4:
       while True:
@@ -77,6 +80,9 @@ while True:
             pass
 
           case 4:
+            pass
+
+          case 5:
             break
       
     case 5:
