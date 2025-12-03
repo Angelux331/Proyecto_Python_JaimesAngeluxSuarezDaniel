@@ -27,6 +27,12 @@
                     "categoria": "Comida",
                     "fecha": "22222222",
                     "descripcion": "iuhfdsgudsbg"
+                },
+                {
+                    "monto": 15000.0,
+                    "categoria": "Comida",
+                    "fecha": "20251202",
+                    "descripcion": "kfc"
                 }
             ],
             "Servicios": [
