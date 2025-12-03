@@ -21,8 +21,8 @@ while True:
       gasto = {
         "monto": float(input("Ingrese el monto del gasto: ")),
         "categoria": categoria,
-        "fecha": input("Ingrese la fecha del gasto (YYYY-MM-DD): "),
-        "descripcion": input("Ingrese una descripción del gasto: ")
+        "fecha": ingresarfecha(),
+        "descripcion": input("Ingrese una descripción del gasto: ").capitalize()
       }
       AgregarGasto(gasto, archivogastos, categoria)
       
@@ -31,12 +31,16 @@ while True:
         choise = menu("Menu Listar Gastos", menuListarGastos.values())
         match choise:
           case 1:
-            gasto = {}
-            AgregarGasto(gasto)
+            vetodoslosgastos(archivogastos)
           
           case 2:
-            pass
-
+            while True:
+              mostrarcategorias(archivogastos)
+              categoria = input("Ingrese la categoría a ver: ").capitalize()
+              if validarcategoria (archivogastos, categoria) == True:
+                vergastosporcategoria(archivogastos, categoria)
+              else:
+                continue
           case 3:
             pass
 

@@ -1,5 +1,7 @@
 import os
 from utils.jsonFileHandler import *
+import time
+from datetime import datetime
 
 def findDictionary(dataList, key, value):
   info = {}
@@ -37,3 +39,45 @@ def mostrarcategorias(archivosgastos):
   categorias = data["Gastos"]["Categoria"].keys()
   for categoria in categorias:
     print(f"- {categoria}")
+
+def ingresarfecha():
+  while True:
+    fecha = input("Ingrese la fecha YYYYMMDD: ").strip()
+    try:
+      datetime.strptime(fecha, "%Y-%m-%d")
+      return fecha
+    except ValueError:
+        print("Fecha inválida. Usa el formato YYYY-MM-DD. Ejemplo: 2025-12-02")
+
+def vetodoslosgastos(archivogastos):
+  limpieza()
+  print("== Todos los Gastos ==\n")
+  data = read_json(archivogastos)
+  categorias = data["Gastos"]["Categoria"].keys()
+  for categoria in categorias:
+    if len(data["Gastos"]["Categoria"][categoria]) == 0:
+      continue
+    print(f"--- {categoria} ---")
+    gastos = data["Gastos"]["Categoria"][categoria]
+    for gasto in gastos:
+      print(f"Descripción: {gasto['descripcion']}, Monto: {gasto['monto']}, Fecha: {gasto['fecha']}")
+    print("\n")
+  pausar()
+  
+
+def vergastosporcategoria(archivogastos, categoria):
+  limpieza()
+  print(f'== Gastos en {categoria} ==\n')
+  data = read_json(archivogastos)
+  categorias = data["Gastos"]["Categoria"].keys()
+  for cat in categorias:
+    if cat == categoria:
+      gastos = data["Gastos"]["Categoria"][cat]
+      if len(gastos) == 0:
+        print("No hay gastos registrados en esta categoría.")
+        pausar()
+        return
+      for gasto in gastos:
+        print(f"Descripción: {gasto['descripcion']}, Monto: {gasto['monto']}, Fecha: {gasto['fecha']}")
+      print("\n")
+  pausar()
