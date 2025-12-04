@@ -14,7 +14,7 @@ menuListarGastos = {
 }
 
 menuCalcularTotalGastos = {
-    '1': 'Calcular total diario',
+    '1': 'Calcular total',
     '2': 'Calcular total semanal',
     '3': 'Calcular total mensual',
     '4': 'Calcular total histórico',

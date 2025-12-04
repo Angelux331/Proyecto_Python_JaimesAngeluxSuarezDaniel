@@ -21,7 +21,7 @@ while True:
           continue
       print("== Agregar Gasto ==")
       gasto = {
-        "monto": validarmonto(),  # Validación mejorada
+        "monto": validarmonto(),
         "fecha": ingresarfecha(),
         "descripcion": input("Ingrese una descripción del gasto: ").capitalize()
       }
@@ -48,7 +48,6 @@ while True:
                 
           case 3:
             filtrarporfechas(archivogastos)
-
           case 4:
             break
 

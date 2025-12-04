@@ -1,16 +1,6 @@
 import os
 from utils.jsonFileHandler import *
-import time
 from datetime import datetime
-
-def findDictionary(dataList, key, value):
-  info = {}
-  for i in range(len(dataList)):
-    if dataList[i].get(key) == value:
-      info["index"] = i
-      info["data"] = dataList[i]
-      break
-  return info
 
 def limpieza():
   os.system('cls' if os.name == 'nt' else 'clear')
@@ -102,22 +92,12 @@ def calculostotales(archivogastos):
     gastos = data["Gastos"]["Categoria"][categoria]
     total_categoria = sum(gasto["monto"] for gasto in gastos)
     total_general += total_categoria
-    print(f"{categoria}: {total_categoria}")
-  print(f"\nTotal General de Gastos: {total_general}\n")
-  pausar()
-
-def calculossemanales(archivogastos):
-  limpieza()
-  data = read_json(archivogastos)
-  categorias = data["Gastos"]["Categoria"].keys()
-  total_general = 0
-  print("== Total de Gastos Semanales ==\n")
-  for categoria in categorias:
-    gastos = data["Gastos"]["Categoria"][categoria]
-    total_categoria = sum(gasto["monto"] for gasto in gastos)
-    total_general += total_categoria
-    print(f"{categoria}: {total_categoria}")
-  print(f"\nTotal General de Gastos Semanales: {total_general}\n")
+    print(f"┏{'━' * 42}┳{'━' * 14}┓")
+    print(f"┃ {categoria:<40} ┃ {total_categoria:<12,.2f} ┃")
+    print(f"┗{'━' * 42}┻{'━' * 14}┛")
+  print(f"\n┏{'━' * 42}┳{'━' * 14}┓")
+  print(f"┃ {'Total General de Gastos:':<40} ┃ {total_general:<12} ┃")
+  print(f"┗{'━' * 42}┻{'━' * 14}┛\n")
   pausar()
 
 def validarmonto():
@@ -196,10 +176,13 @@ def calcularsemanal(archivogastos):
         gastos = data["Gastos"]["Categoria"][categoria]
         total_cat = sum(g["monto"] for g in gastos if hace_semana <= datetime.strptime(g["fecha"], "%Y-%m-%d").date() <= hoy)
         if total_cat > 0:
-            print(f"{categoria}: {total_cat}")
+            print(f"┏{'━' * 42}┳{'━' * 14}┓")
+            print(f"┃ {categoria:<40} ┃ {total_cat:<12} ┃")
+            print(f"┗{'━' * 42}┻{'━' * 14}┛")
             total_semanal += total_cat
-    
-    print(f"\nTotal Semanal: {total_semanal}\n")
+    print(f"\n┏{'━' * 42}┳{'━' * 14}┓")
+    print(f"┃ {'Total Semanal':<40} ┃ {total_semanal:<12} ┃")
+    print(f"┗{'━' * 42}┻{'━' * 14}┛\n")
     pausar()
 
 
@@ -226,10 +209,13 @@ def calcularmensual(archivogastos):
                 total_cat += g["monto"]
         
         if total_cat > 0:
-            print(f"{categoria}: {total_cat}")
+            print(f"┏{'━' * 42}┳{'━' * 14}┓")
+            print(f"┃ {categoria:<40} ┃ {total_cat:<12} ┃")
+            print(f"┗{'━' * 42}┻{'━' * 14}┛")
             total_mensual += total_cat
-    
-    print(f"\nTotal Mensual: {total_mensual}\n")
+    print(f"\n┏{'━' * 42}┳{'━' * 14}┓")
+    print(f"┃ {'Total Mensual':<40} ┃ {total_mensual:<12} ┃")
+    print(f"┗{'━' * 42}┻{'━' * 14}┛\n")
     pausar()
 
 
@@ -272,7 +258,7 @@ def generarreporte(archivogastos, periodo):
                                      if datetime.strptime(g["fecha"], "%Y-%m-%d").month == hoy.month 
                                      and datetime.strptime(g["fecha"], "%Y-%m-%d").year == hoy.year]
     
-    else:  # histórico
+    else:
         titulo = "REPORTE HISTÓRICO COMPLETO"
         gastos_filtrados = data["Gastos"]["Categoria"]
     
