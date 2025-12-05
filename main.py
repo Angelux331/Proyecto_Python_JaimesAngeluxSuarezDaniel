@@ -5,6 +5,7 @@ import time
 from utils.jsonFileHandler import *
 
 archivogastos = './data/gastos.json'
+
 estructura = {
     "Gastos": {
         "Categoria": {
@@ -33,7 +34,7 @@ while True:
         else:
           continue
 
-      print("== Agregar Gasto ==")
+      print("Agregar Gasto")
       gasto = {
         "monto": validarmonto(),
         "fecha": ingresarfecha(),
@@ -68,7 +69,7 @@ while True:
         choise = menu("Menu Calcular Total de Gastos", menuCalcularTotalGastos.values())
         match choise:
           case 1:
-            calculostotales(archivogastos)
+            calculardiario(archivogastos)
           case 2:
             calcularsemanal(archivogastos)
           case 3:
