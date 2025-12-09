@@ -14,12 +14,14 @@ def menu(title, options):
     
   while True:
     try:
-      choise = int(validacioninput("--> "))
+      choise = int(input("--> "))
       if choise not in range(1, len(options) + 1):
         print("--> Opción inválida...")
       else:
         break
     except ValueError:
       print("Su elección debe ser un número...")
+    except KeyboardInterrupt:
+      print("\n[!] esta vez no")
 
   return choise
