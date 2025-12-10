@@ -284,14 +284,15 @@ def generarreporte(archivogastos, periodo):
   elif periodo == "categoria":
     mostrarcategorias(archivogastos)
     try:
-      catego = input('Ingrese la categoria --> ').capitalize
+      catego = input('Ingrese la categoria --> ').capitalize()
     except KeyboardInterrupt:
       print('No pasaras 🧙')
+
     if not validarcategoria(archivogastos, catego):
       return
     
     try:
-      siono = input('Filtrar por rango de fecha? (s/n) --> ').lower
+      siono = input('Filtrar por rango de fecha? (s/n) --> ').lower()
     except KeyboardInterrupt:
       print('No pasaras 🧙')
     if siono == 's':
