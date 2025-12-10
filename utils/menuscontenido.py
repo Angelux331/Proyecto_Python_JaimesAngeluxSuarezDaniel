@@ -10,7 +10,7 @@ menuListarGastos = {
     '1': 'Ver todos los gastos',
     '2': 'Filtrar por categoría',
     '3': 'Filtrar por rango de fechas',
-    '4': 'Regresar al menú principal'
+    '4': 'Regresar'
 }
 
 menuCalcularTotalGastos = {
@@ -18,7 +18,7 @@ menuCalcularTotalGastos = {
     '2': 'Calcular total semanal',
     '3': 'Calcular total mensual',
     '4': 'Calcular total histórico',
-    '5': 'Regresar al menú principal'
+    '5': 'Regresar'
 }
 
 menuGenerarReporte = {
@@ -26,5 +26,16 @@ menuGenerarReporte = {
     '2': 'Reporte semanal',
     '3': 'Reporte mensual',
     '4': 'Reporte histórico',
-    '5': 'Regresar al menú principal'
+    '5': 'Reporte por Rango de fechas',
+    '6': 'Reporte de Categoria',
+    '7': 'Regresar'
+}
+
+menuInformePorCategoria = {
+    '1': 'Reporte diario',
+    '2': 'Reporte semanal',
+    '3': 'Reporte mensual',
+    '4': 'Reporte histórico',
+    '5': 'Reporte por Rango de fechas',
+    '6': 'Regresar'
 }

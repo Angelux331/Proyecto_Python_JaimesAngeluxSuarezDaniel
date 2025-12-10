@@ -9,7 +9,7 @@ def pausar():
   try:
     input("Presione Enter para continuar...")
   except KeyboardInterrupt:
-    print("\n[!] esta vez no")
+    print('No pasaras 🧙')
 
 def validarcategoria(archivogastos, categoria):
   data = read_json(archivogastos)
@@ -42,7 +42,7 @@ def ingresarfecha():
     try:
       fecha = input("Ingrese la fecha YYYYMMDD: ").strip()
     except KeyboardInterrupt:
-      print("\n[!] esta vez no")
+      print('No pasaras 🧙')
     try:
       datetime.strptime(fecha, "%Y-%m-%d")
       return fecha
@@ -120,7 +120,7 @@ def validarmonto():
       try:
         monto = input("Ingrese el monto del gasto: ").strip()
       except KeyboardInterrupt:
-        print("\n[!] esta vez no")
+        print('No pasaras 🧙')
 
       monto = float(monto)
       if monto <= 0:
@@ -139,7 +139,7 @@ def ingresarfecha(mensaje="Ingrese la fecha (YYYY-MM-DD): "):
     except ValueError:
       print("Fecha inválida. Usa el formato YYYY-MM-DD. Ejemplo: 2025-12-03")
     except KeyboardInterrupt:
-      print("\n[!] esta vez no")
+      print('No pasaras 🧙')
 
 def filtrarporfechas(archivogastos):
   limpieza()
@@ -273,9 +273,45 @@ def generarreporte(archivogastos, periodo):
                datetime.strptime(g["fecha"], "%Y-%m-%d").year == hoy.year]
       for cat in categorias
     }
-  else:
+  elif periodo == "historico":
     titulo = "REPORTE HISTÓRICO COMPLETO"
     gastos_filtrados = data["Gastos"]["Categoria"]
+
+  elif periodo == "fecha":
+    titulo = "Reporte por Fecha"
+    filtrarporfechas()
+
+  elif periodo == "categoria":
+    mostrarcategorias(archivogastos)
+    try:
+      catego = input('Ingrese la categoria --> ').capitalize
+    except KeyboardInterrupt:
+      print('No pasaras 🧙')
+    if not validarcategoria(archivogastos, catego):
+      return
+    
+    try:
+      siono = input('Filtrar por rango de fecha? (s/n) --> ').lower
+    except KeyboardInterrupt:
+      print('No pasaras 🧙')
+    if siono == 's':
+      pass
+    data = read_json(archivogastos)
+    datas = data["Gastos"]["Categoria"].keys()
+    print(f'━━ Reporte de {catego} ━━\n')
+    for cat in datas:
+      if cat == catego:
+        gastos = data["Gastos"]["Categoria"][cat]
+        if len(gastos) == 0:
+          print("No hay gastos registrados en esta categoría.")
+          pausar()
+          return
+        for gasto in gastos:
+          for gasto in gastos:
+            print(f"┏{'━' * 42}┳{'━' * 15}┳{'━' * 14}┓")
+            print(f"┃ {gasto['descripcion']:<40} ┃ ${gasto['monto']:>12,.2f} ┃ {gasto['fecha']:^12} ┃")
+            print(f"┗{'━' * 42}┻{'━' * 15}┻{'━' * 14}┛")
+          print("\n")
 
   print(f"{'━'*50}")
   print(f"{titulo:^50}")
@@ -312,7 +348,7 @@ def generarreporte(archivogastos, periodo):
   try:
     guardar = input("--> ").strip().lower()
   except KeyboardInterrupt:
-    print("\n[!] esta vez no")
+    print('No pasaras 🧙')
   if guardar == 's':  
     if not os.path.exists("reportes"):
       os.makedirs("reportes")
@@ -325,3 +361,4 @@ def generarreporte(archivogastos, periodo):
   else:
     print("Reporte no guardado.")
     pausar()
+
