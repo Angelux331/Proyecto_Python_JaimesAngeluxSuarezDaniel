@@ -297,7 +297,36 @@ def generarreporte(archivogastos, periodo):
     except KeyboardInterrupt:
       print('No pasaras 🧙')
     if siono == 's':
-      pass
+      fecha_inicio = ingresarfecha("Ingrese fecha de inicio (YYYY-MM-DD): ")
+      fecha_fin = ingresarfecha("Ingrese fecha de fin (YYYY-MM-DD): ")
+      
+      if fecha_inicio > fecha_fin:
+        print("La fecha de inicio no puede ser posterior a la fecha fin.")
+        pausar()
+        return
+      
+      data = read_json(archivogastos)
+      datas = data["Gastos"]["Categoria"][catego]
+      gastos_encontrados = False
+      
+      limpieza()
+      print(f"\n━━ Gastos entre {fecha_inicio} y {fecha_fin} de la categoria {catego}━━\n")
+      for categoria in catego:
+        gastos = data["Gastos"]["Categoria"][catego]
+        gastos_filtrados = [g for g in gastos if fecha_inicio <= g["fecha"] <= fecha_fin]
+
+      if gastos_filtrados:
+        gastos_encontrados = True
+        print(f"--- {categoria} ---")
+        for gasto in gastos_filtrados:
+          print(f"┏{'━' * 42}┳{'━' * 25}┳{'━' * 14}┓")
+          print(f"┃ {gasto['descripcion']:<40} ┃ ${gasto['monto']:>22,.2f} ┃ {gasto['fecha']:^12} ┃")
+          print(f"┗{'━' * 42}┻{'━' * 25}┻{'━' * 14}┛")
+
+      if not gastos_encontrados:
+        print("No se encontraron gastos en ese rango de fechas.")
+      pausar()
+
     data = read_json(archivogastos)
     datas = data["Gastos"]["Categoria"].keys()
     print(f'━━ Reporte de {catego} ━━\n')
@@ -313,6 +342,9 @@ def generarreporte(archivogastos, periodo):
             print(f"┏{'━' * 42}┳{'━' * 15}┳{'━' * 14}┓")
             print(f"┃ {gasto['descripcion']:<40} ┃ ${gasto['monto']:>12,.2f} ┃ {gasto['fecha']:^12} ┃")
             print(f"┗{'━' * 42}┻{'━' * 15}┻{'━' * 14}┛")
+            gastos_filtrados = {
+              cat: [g for g in data["Gastos"]["Categoria"][cat]]}
+
           print("\n")
 
   print(f"{'━'*50}")
