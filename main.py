@@ -92,10 +92,8 @@ while True:
           case 4:
             generarreporte(archivogastos, "historico")
           case 5:
-            generarreporte(archivogastos, "fecha")
-          case 6:
             generarreporte(archivogastos, "categoria")
-          case 7:
+          case 6:
             break
       
     case 5:

@@ -26,7 +26,6 @@ menuGenerarReporte = {
     '2': 'Reporte semanal',
     '3': 'Reporte mensual',
     '4': 'Reporte histórico',
-    '5': 'Reporte por Rango de fechas',
     '6': 'Reporte de Categoria',
     '7': 'Regresar'
 }

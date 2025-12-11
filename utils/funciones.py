@@ -277,10 +277,6 @@ def generarreporte(archivogastos, periodo):
     titulo = "REPORTE HISTÓRICO COMPLETO"
     gastos_filtrados = data["Gastos"]["Categoria"]
 
-  elif periodo == "fecha":
-    titulo = "Reporte por Fecha"
-    filtrarporfechas()
-
   elif periodo == "categoria":
     titulo = "REPORTE por categoria"
     mostrarcategorias(archivogastos)
@@ -326,24 +322,24 @@ def generarreporte(archivogastos, periodo):
       if not gastos_encontrados:
         print("No se encontraron gastos en ese rango de fechas.")
       pausar()
-
-    data = read_json(archivogastos)
-    datas = data["Gastos"]["Categoria"].keys()
-    print(f'━━ Reporte de {catego} ━━\n')
-    for cat in datas:
-      if cat == catego:
-        gastos = data["Gastos"]["Categoria"][cat]
-        if len(gastos) == 0:
-          print("No hay gastos registrados en esta categoría.")
-          pausar()
-          return
-        for gasto in gastos:
+    else:
+      data = read_json(archivogastos)
+      datas = data["Gastos"]["Categoria"].keys()
+      print(f'━━ Reporte de {catego} ━━\n')
+      for cat in datas:
+        if cat == catego:
+          gastos = data["Gastos"]["Categoria"][cat]
+          if len(gastos) == 0:
+            print("No hay gastos registrados en esta categoría.")
+            pausar()
+            return
           for gasto in gastos:
-            print(f"┏{'━' * 42}┳{'━' * 15}┳{'━' * 14}┓")
-            print(f"┃ {gasto['descripcion']:<40} ┃ ${gasto['monto']:>12,.2f} ┃ {gasto['fecha']:^12} ┃")
-            print(f"┗{'━' * 42}┻{'━' * 15}┻{'━' * 14}┛")
-            gastos_filtrados = {
-              cat: [g for g in data["Gastos"]["Categoria"][cat]]}
+            for gasto in gastos:
+              print(f"┏{'━' * 42}┳{'━' * 15}┳{'━' * 14}┓")
+              print(f"┃ {gasto['descripcion']:<40} ┃ ${gasto['monto']:>12,.2f} ┃ {gasto['fecha']:^12} ┃")
+              print(f"┗{'━' * 42}┻{'━' * 15}┻{'━' * 14}┛")
+              gastos_filtrados = {
+                cat: [g for g in data["Gastos"]["Categoria"][cat]]}
 
           print("\n")
 
