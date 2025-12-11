@@ -282,6 +282,7 @@ def generarreporte(archivogastos, periodo):
     filtrarporfechas()
 
   elif periodo == "categoria":
+    titulo = "REPORTE por categoria"
     mostrarcategorias(archivogastos)
     try:
       catego = input('Ingrese la categoria --> ').capitalize()
